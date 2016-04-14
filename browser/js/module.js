@@ -2,9 +2,17 @@
 
 var app = angular.module('archivebot', ['ui.router']);
 
+app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
+
+  $locationProvider.html5Mode({
+    enabled: true,
+    requireBase: false
+  });
+
+})
+
 app.config(function($stateProvider) {
-  $stateProvider.state('archive', {
-      url: '/archive',
-      templateUrl: 'js/archive/message.html'
+  $stateProvider.state('home', {
+      url: '/'
     })
 });
