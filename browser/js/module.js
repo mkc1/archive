@@ -5,6 +5,6 @@ var app = angular.module('archivebot', ['ui.router']);
 app.config(function($stateProvider) {
   $stateProvider.state('archive', {
       url: '/archive',
-      template: 'js/archive/message.html'
+      templateUrl: 'js/archive/message.html'
     })
 });
