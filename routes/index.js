@@ -20,5 +20,15 @@ router.post('/messages', function(req, res, next){
   .then(null, next)
 })
 
+router.delete('/messages', function(req, res, next){
+  Message.remove({}, function(err) {
+            if (err) {
+                console.log(err)
+            } else {
+                res.end('success');
+            }
+        }
+    );
+})
 
 module.exports = router;
