@@ -12,6 +12,22 @@ router.get('/messages', function(req, res, next){
   .then(null, next)
 })
 
+router.get('/channels', function(req, res, next){
+  Message.findAllChannels()
+  .then(function(channels){
+    res.send(channels)
+  })
+  .then(null, next)
+})
+
+router.get('/teams', function(req, res, next){
+  Message.findAllTeams()
+  .then(function(teams){
+    res.send(teams)
+  })
+  .then(null, next)
+})
+
 router.post('/messages', function(req, res, next){
   Message.create(req.body)
   .then(function(message){

@@ -2,7 +2,7 @@
 
 var app = angular.module('archivebot', ['ui.router']);
 
-app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
+app.config(function($stateProvider, $locationProvider) {
 
   $locationProvider.html5Mode({
     enabled: true,
@@ -10,9 +10,3 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
   });
 
 })
-
-app.config(function($stateProvider) {
-  $stateProvider.state('home', {
-      url: '/'
-    })
-});

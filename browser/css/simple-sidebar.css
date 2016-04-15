@@ -85,6 +85,9 @@
     height: 65px;
     font-size: 18px;
     line-height: 60px;
+    font-family: inherit;
+    font-weight: 400;
+    color: white;
 }
 
 .sidebar-nav > .sidebar-brand a {
