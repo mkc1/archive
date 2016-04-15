@@ -1,20 +1,4 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/archive');
-
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'mongodb connection error: '));
-
-var channelSchema = new mongoose.Schema({
-    channelId: {
-      type: String
-    },
-    name: {
-      type: String
-    },
-    password: {
-      type: String
-    }
-});
 
 var fileSchema = new mongoose.Schema({
     mode: {
@@ -76,9 +60,7 @@ messageSchema.statics.findAllChannels = function(){
 }
 
 var Message = mongoose.model('Message', messageSchema);
-var Channel = mongoose.model('Channel', channelSchema);
 
 module.exports = {
-    Message: Message,
-    Channel: Channel
+    Message: Message
 };

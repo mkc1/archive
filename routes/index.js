@@ -3,6 +3,7 @@ var router = express.Router();
 
 var models = require('../db/models');
 var Message = models.Message;
+var Channel = models.Channel;
 
 router.get('/messages', function(req, res, next){
   Message.find({})
@@ -13,17 +14,9 @@ router.get('/messages', function(req, res, next){
 })
 
 router.get('/channels', function(req, res, next){
-  Message.findAllChannels()
+  Channel.find({})
   .then(function(channels){
-    res.send(channels)
-  })
-  .then(null, next)
-})
-
-router.get('/teams', function(req, res, next){
-  Message.findAllTeams()
-  .then(function(teams){
-    res.send(teams)
+    res.json(channels)
   })
   .then(null, next)
 })
@@ -32,6 +25,14 @@ router.post('/messages', function(req, res, next){
   Message.create(req.body)
   .then(function(message){
     res.json(message)
+  })
+  .then(null, next)
+})
+
+router.post('/channels', function(req, res, next){
+  Channel.create(req.body)
+  .then(function(channel){
+    res.json(channel)
   })
   .then(null, next)
 })
