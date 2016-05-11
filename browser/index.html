@@ -1,9 +1,17 @@
 <!DOCTYPE html>
-<html ng-app='archivebot'>
+<html>
+<head>
+  <title>archivebot</title>
   <script src="/angular/angular.js"></script>
   <script src="/angular-ui-router/release/angular-ui-router.js" defer></script>
-  <script src="js/module.js"></script>
-  <script src="js/archive/archive.js"></script>
-  <script src="js/home/home.js"></script>
-  <ui-view><ui-view>
+  <script src="/js/module.js"></script>
+  <script src="/js/archive/archive.js"></script>
+  <script src="/js/home/home.js"></script>
+  <link href="/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/login.css" rel="stylesheet">
+  <link href="/css/archive.css" rel="stylesheet">
+</head>
+<body ng-app='archivebot'>
+  <ui-view></ui-view>
+</body>
 </html>

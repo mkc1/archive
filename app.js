@@ -4,7 +4,6 @@ var Channel = models.Channel;
 var Promise = require('bluebird')
 var Slack = require('./slackfactory')
 
-//xoxb-33701779302-PNVLBx0mqybphatcr3Em1HKq
 
 var Botkit = require('botkit');
 
@@ -16,7 +15,7 @@ var controller = Botkit.slackbot({
 
 // connect the bot to a stream of messages
 controller.spawn({
-  token: 'xoxb-33701779302-PNVLBx0mqybphatcr3Em1HKq',
+  token: process.env.SLACK_TOKEN,
 }).startRTM()
 
 controller.on('channel_joined',function(bot,message) {
@@ -86,15 +85,8 @@ controller.on(['direct_mention','mention'],function(bot,message) {
 });
 
 controller.on(['direct_message'],function(bot,message) {
-  var compliments = [
-    'the most beautiful, glowing, sun goddess ever',
-    'a poetic, noble land mermaid',
-    'a beautiful, talented, brilliant, powerful musk ox',
-    'a beautiful tropical fish',
-    'a beautiful, naïve, sophisticated newborn baby'
-  ]
-  var randomCompliment = compliments[Math.floor(Math.random()*compliments.length)]
-  bot.reply(message,'I cannot have conversations as I am merely an archivebot, but you are '+randomCompliment+'.')
+
+  bot.reply(message,'I cannot have conversations as I am merely an archivebot')
 
 });
 

@@ -5,6 +5,18 @@ var models = require('../db/models');
 var Message = models.Message;
 var Channel = models.Channel;
 
+router.post('/login', function (req, res, next) {
+  console.log('body', req.body)
+  Channel.findOne(req.body).exec()
+  .then(function (channel) {
+    if (!channel) {
+      res.send({ error: 'Something failed!' });
+    }
+    else res.json(channel) 
+  })
+  .then(null, next);
+});
+
 router.get('/messages', function(req, res, next){
   Message.find({})
   .then(function(messages){

@@ -65,7 +65,7 @@ var messageSchema = new mongoose.Schema({
 
 messageSchema.pre('save', function(next){
   var ts = this.date;
-  this.date = new Date(ts*1000);
+  date = new Date(ts*1000);
   next();
 })
 

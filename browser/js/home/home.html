@@ -1,28 +1,33 @@
 <!-- Bootstrap Core CSS -->
-<link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+<head>
+  <!-- <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"> -->
 
-<!-- Custom CSS -->
-<link href="css/login.css" rel="stylesheet">
+<!-- Custom CSS
+  <link href="css/login.css" rel="stylesheet"> -->
+</head>
 
+<body>
 <div class="container">
   <div class="row">
     <div class="Absolute-Center is-Responsive">
       <div id="logo-container"></div>
       <div class="col-sm-12 col-md-10 col-md-offset-1">
-        <form action="" id="loginForm">
+        <form id="loginForm" ng-submit="login(credentials)">
           <div class="form-group input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input class="form-control" type="text" name='channel' placeholder="channel id"/>          
+            <input class="form-control" type="text" name='channel' placeholder="channel id" ng-model="credentials.channelId"/>          
           </div>
           <div class="form-group input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-            <input class="form-control" type="password" name='password' placeholder="password"/>     
+            <input class="form-control" type="password" name='password' placeholder="password" ng-model="credentials.password"/>     
           </div>
           <div class="form-group">
-            <button type="button" class="btn btn-def btn-block">Login</button>
+            <button type="submit" class="btn btn-def btn-block">Login</button>
           </div>
-        </form>        
+        </form>
+        <p ng-show="errorMessage">{{errorMessage}}</p>       
       </div>  
     </div>    
   </div>
 </div>
+</body>

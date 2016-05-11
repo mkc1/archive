@@ -1,55 +1,93 @@
-   <head>
-
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <!-- Bootstrap Core CSS -->
-    <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="css/simple-sidebar.css" rel="stylesheet">
-
-</head>
-
-<body>
-
-    <div id="wrapper">
-
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                  Archive History
-                </li>
-                <div ng-repeat="channel in channels">
-                    <li>
-                        <a ng-click="clicked(channel)">{{channel}}</a>
-                    </li>
-                </div>
-            </ul>
+    <title>archive</title>
+    <meta name="generator" content="Bootply" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="/css/archive.css" rel="stylesheet">
+    <link href="/bootstrap/dist/js/bootstrap.min.js" rel="stylesheet">
+  </head>
+  <body>
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="navbar-header">
+    <a id="channel-name" class="navbar-brand" rel="home">{{channel}}</a>
+    <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> -->
+    <span class="sr-only">Toggle navigation</span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    </button>
+  </div>
+  <div class="collapse navbar-collapse">
+    <ul class="nav navbar-nav">
+      <li><a ng-click="logOut()">Log out</a></li>
+    </ul>
+    <div class="col-sm-3 col-md-3 pull-right">
+          <ul class="nav navbar-nav">
+      <li>
+      <div class="dropdown">
+        <div class="dropbtn">Show <b class="caret"></b></div>
+        <div class="dropdown-content">
+          <a href="#">All</a>
+          <a href="#">10 per page</a>
+          <a href="#">20 per page</a>
+          <a href="#">40 per page</a>
         </div>
-        <!-- /#sidebar-wrapper -->
-
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h2>Archive History</h2>
-                        <div class='message_display' ng-repeat="message in messages">
-                          <div class='message_heading'>{{message.user}}</div>
-                          <div class='message_content'>{{message.text}}</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      </div>
+      </li>
+      <li>
+      <div class="dropdown">
+        <div class="dropbtn">Sort <b class="caret"></b></div>
+        <div class="dropdown-content">
+          <a href="#" ng-click="sortMessages('newest')">newest first</a>
+          <a href="#" ng-click="sortMessages('oldest')">oldest first</a>
         </div>
-        <!-- /#page-content-wrapper -->
-
+      </div>
+      </li>
+    </ul>
     </div>
-    <!-- /#wrapper -->
+  </div>
+</nav>
 
-</body>
+<div class="container-fluid">
+  
+  <!--left-->
+  <div class="col-sm-2">
+  </div><!--/left-->
+  
+  <!--center-->
+  <div class="col-sm-8">
+    <div class="row" ng-repeat="message in messages | orderBy: newest">
+        <div class="col-xs-12">
+        <div>
+          <h4>{{message.user}}</h4>
+          <p class="message-text">{{message.text}}{{message.channel}}</p>
+          <p class="message-text" ng-show="{{message.file}}"><b>shared a {{message.file.filetype}} file:</b>
+            <a href="{{message.file.url_private}}">{{message.file.title}}</a>
+          </p>
+          <p class="preview" ng-show="{{message.file.preview}}">{{message.file.preview}}</p>
+          <!-- <p class="lead"><button class="btn btn-default">Read More</button></p> -->
+          <!-- <p class="pull-right"><span class="label label-default">keyword</span> <span class="label label-default">tag</span> <span class="label label-default">post</span></p> -->
+          <ul class="list-inline" class="pull-right"><li class="date">{{message.date}}</li></ul>
+        </div>
+        <hr>
+        </div>
+    </div>
+    <ul class="pager">
+          <li><a href="#" ng-click="messagesGet()">Previous</a></li>
+          <li><a href="#">Next</a></li>
+        </ul>
+  </div>
+
+   <div class="col-sm-2">
+  </div><!--/right
+  <hr>
+</div>
+  </body>
+</html>

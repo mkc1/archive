@@ -1,29 +1,43 @@
 app.config(function($stateProvider) {
   $stateProvider.state('archive', {
-      url: '/archive',
-      templateUrl: 'js/archive/archive.html',
+      url: '/archive/:channelId',
+      templateUrl: '/js/archive/archive.html',
+      // params: { channelId: null },
       controller: 'ArchiveController',
       resolve: {
         getMessages: function(ArchiveFactory) {
           return ArchiveFactory.getAllMessages();
         },
-        getChannels: function($http) {
-          return $http.get('/channels')
-          .then(function(response){
-            return response.data
-          })
+        getChannel: function($http, $stateParams) {
+          return 'okay';
+          // return $stateParams.channel.name;
+          // return $http.get('/channels')
+          // .then(function(response){
+          //   return response.data
+          // })
         }
       }
     })
 })
 
-app.controller('ArchiveController', function($scope, $state, getMessages, getChannels) {
+app.controller('ArchiveController', function($rootScope, $scope, $state, $stateParams, getMessages, getChannel) {
+
+  $scope.channel = getChannel
 
   $scope.messages = [];
 
-  $scope.channels = getChannels;
+  $scope.newest = "date"
 
-  $scope.clicked = function(channel){
+  $scope.sortMessages = function(preference) {
+    if (preference==="newest") $scope.newest="-date";
+    else if (preference=="oldest") $scope.newest="date"
+  }
+
+  $scope.logOut = function(channel){
+    $state.go('home')
+  }
+
+  $scope.messagesGet = function() {
     $scope.messages = getMessages;
   }
 

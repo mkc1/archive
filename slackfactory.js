@@ -1,5 +1,5 @@
 var request = require('request')
-var token = 'xoxp-33696896116-33718237554-34763824660-87dbef8d67'
+var token = process.env.SLACK_TOKEN
 var dbGet = 'https://slack.com/api/'
 var Promise = require('bluebird')
 var queryStr;
