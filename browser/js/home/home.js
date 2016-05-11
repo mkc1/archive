@@ -16,6 +16,7 @@ app.controller('HomeCtrl', function($scope, $state, $http) {
     if (credentials==undefined) return false;
     $http.post('/login', credentials)
     .then(function(response){
+      console.log(response.data)
       credentials = undefined;
       if (response.data.error) {
         $scope.errorMessage = "invalid login info"

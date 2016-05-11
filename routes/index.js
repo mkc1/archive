@@ -5,17 +5,15 @@ var models = require('../db/models');
 var Message = models.Message;
 var Channel = models.Channel;
 
-router.post('/login', function (req, res, next) {
-  console.log('body', req.body)
-  Channel.findOne(req.body).exec()
+router.param('id', function (req, res, next, id) {
+  console.log('param', id)
+  Channel.find({channelId: id}).exec()
   .then(function (channel) {
-    if (!channel) {
-      res.send({ error: 'Something failed!' });
-    }
-    else res.json(channel) 
+    req.requestedChannel = channel[0];
+    next();
   })
-  .then(null, next);
-});
+  .then(null, next)
+})
 
 router.get('/messages', function(req, res, next){
   Message.find({})
@@ -29,6 +27,17 @@ router.get('/channels', function(req, res, next){
   Channel.find({})
   .then(function(channels){
     res.json(channels)
+  })
+  .then(null, next)
+})
+
+router.get('/channel/:id', function(req, res, next){
+  console.log('here is channel', req.requestedChannel)
+  req.requestedChannel.getChannelMessages()
+  .then(function(messages){
+    var obj = req.requestedChannel.toObject();
+    obj.messages = messages;
+    res.json(obj)
   })
   .then(null, next)
 })

@@ -140,7 +140,7 @@ controller.on('ambient',function(bot,message) {
     .spread(function(user, channel) {
       return Message.create({
       type: message.type,
-      channel: channel.name,
+      channel: message.channel,
       user: user.name,
       text: message.text,
       date: message.ts,

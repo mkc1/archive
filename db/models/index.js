@@ -43,7 +43,9 @@ var messageSchema = new mongoose.Schema({
       type: String
     },
     channel: {
-      type: String
+      type: String,
+      ref: 'Channel',
+      required: true
     },
     user: {
       type: String
@@ -69,10 +71,14 @@ messageSchema.pre('save', function(next){
   next();
 })
 
-messageSchema.statics.findAllChannels = function(){
-  return this.find().distinct('channel', function(err, channels){
-    return channels;
-  })
+// messageSchema.statics.findAllChannels = function(){
+//   return this.find().distinct('channel', function(err, channels){
+//     return channels;
+//   })
+// }
+
+channelSchema.methods.getChannelMessages = function(cb) {
+  return Message.find({channel: this.channelId}).exec()
 }
 
 var Message = mongoose.model('Message', messageSchema);
