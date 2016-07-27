@@ -4,16 +4,25 @@
   "description": "archive bot for slack",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "angular": "^1.5.3",
+    "angular": "^1.5.5",
+    "angular-ui-router": "^0.2.18",
     "bluebird": "^3.3.5",
     "body-parser": "^1.15.1",
+    "bootstrap": "^3.3.6",
+    "express": "^4.13.4",
     "express-session": "^1.13.0",
+    "http": "0.0.0",
+    "mongoose": "^4.4.16",
     "morgan": "^1.7.0",
     "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "chai": "3.4.1",
+    "mocha": "2.3.4"
   }
 }

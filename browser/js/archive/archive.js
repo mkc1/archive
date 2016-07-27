@@ -4,6 +4,9 @@ app.config(function($stateProvider) {
       templateUrl: '/js/archive/archive.html',
       // params: { channelId: null },
       controller: 'ArchiveController',
+      data: {
+        needLogin: true,
+      }
       resolve: {
         getChannel: function($http, $stateParams) {
           return $http.get('/channel/'+$stateParams.channelId)
@@ -15,7 +18,7 @@ app.config(function($stateProvider) {
     })
 })
 
-app.controller('ArchiveController', function($rootScope, $scope, $state, $stateParams, getChannel) {
+app.controller('ArchiveController', function($rootScope, $scope, $state, $stateParams, getChannel, $http) {
 
   $scope.channel = getChannel.name
 
@@ -31,8 +34,10 @@ app.controller('ArchiveController', function($rootScope, $scope, $state, $stateP
   }
 
   $scope.logOut = function(channel){
-    $state.go('home')
-    
+    $http.delete('/logout')
+    .then(function() {
+      $state.go('home')
+    })
   }
 
   // $scope.messagesGet = function() {
