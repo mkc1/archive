@@ -15,7 +15,7 @@ var controller = Botkit.slackbot({
 
 // connect the bot to a stream of messages
 controller.spawn({
-  token: process.env.SLACK_TOKEN,
+  token: process.env.CONTROLLER_TOKEN,
 }).startRTM()
 
 controller.on('channel_joined',function(bot,message) {
