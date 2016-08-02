@@ -1,7 +1,5 @@
 'use strict';
 
-console.log('hello')
-
 var mongoose = require('mongoose'),
     expect = require('chai').expect,
     Promise = require('bluebird'),

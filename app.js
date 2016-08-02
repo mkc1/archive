@@ -2,7 +2,7 @@ var models = require('./db/models');
 var Message = models.Message;
 var Channel = models.Channel;
 var Promise = require('bluebird')
-var Slack = require('./slackfactory')
+var Slack = require('./slack')
 
 
 var Botkit = require('botkit');
