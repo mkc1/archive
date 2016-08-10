@@ -2,14 +2,11 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var bodyParser = require('body-parser');
-// var morgan = require('morgan');
-// var session = require('express-session');
 var models = require('./db/models');
 var Channel = models.Channel;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-// app.use(morgan('dev'));
 
 app.use('/', require('./routes'));
 require('./app.js')
@@ -21,7 +18,4 @@ app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, './browser/index.html'));
 });
 
-
-app.listen(3000, function() {
-  console.log('listening!!!!!')
-})
+app.listen(process.env.PORT || 3000)

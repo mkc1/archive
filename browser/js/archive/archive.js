@@ -1,6 +1,7 @@
 app.config(function($stateProvider) {
   $stateProvider.state('archive', {
-      url: '/archive/:channelId',
+      // url: '/archive/:channelId',
+      url: '/archive',
       templateUrl: '/js/archive/archive.html',
       params: { channelId: null },
       controller: 'ArchiveController',
@@ -38,25 +39,4 @@ app.controller('ArchiveController', function($rootScope, $scope, $state, $stateP
     })
   }
 
-  // $scope.messagesGet = function() {
-  //   $scope.messages = getMessages;
-  // }
-
 })
-
-// app.factory('ArchiveFactory', function($http) {
-
-//   var cachedMessages = [];
-//   var ArchiveFactory = {};
-
-//   ArchiveFactory.getAllMessages = function() {
-//     return $http.get('/channels')
-//     .then(function(response){
-//       angular.copy(response.data, cachedMessages)
-//       return cachedMessages;
-//     })
-//   }
-
-//   return ArchiveFactory;
-
-// })

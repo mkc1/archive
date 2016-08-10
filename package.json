@@ -2,9 +2,10 @@
   "name": "archivebot",
   "version": "1.0.0",
   "description": "archive bot for slack",
-  "main": "app.js",
+  "main": "main.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "start": "nodemon"
   },
   "author": "",
   "license": "ISC",
@@ -24,5 +25,8 @@
   "devDependencies": {
     "chai": "3.4.1",
     "mocha": "2.3.4"
+  },
+  "engines": {
+    "node": "4.3.2"
   }
 }
