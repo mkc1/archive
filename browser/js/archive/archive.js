@@ -2,11 +2,11 @@ app.config(function($stateProvider) {
   $stateProvider.state('archive', {
       url: '/archive/:channelId',
       templateUrl: '/js/archive/archive.html',
-      // params: { channelId: null },
+      params: { channelId: null },
       controller: 'ArchiveController',
       data: {
         needLogin: true,
-      }
+      },
       resolve: {
         getChannel: function($http, $stateParams) {
           return $http.get('/channel/'+$stateParams.channelId)
@@ -23,8 +23,6 @@ app.controller('ArchiveController', function($rootScope, $scope, $state, $stateP
   $scope.channel = getChannel.name
 
   $scope.messages = getChannel.messages;
-
-  console.log($scope.messages)
 
   $scope.newest = "date"
 

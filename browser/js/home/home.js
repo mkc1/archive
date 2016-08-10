@@ -20,7 +20,6 @@ app.controller('HomeCtrl', function($scope, $state, $http) {
       credentials = undefined;
       if (response.data.error) {
         $scope.errorMessage = "invalid login info"
-
       }
       else $state.go('archive', {channelId: response.data.channelId})
     })
