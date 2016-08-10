@@ -14,16 +14,16 @@ app.use(morgan('dev'));
 app.use('/', require('./routes'));
 require('./app.js')
 
-app.use(session({
-  secret: 'tongiscool',
-  resave: false,
-  saveUninitialized: false
-}));
+// app.use(session({
+//   secret: 'tongiscool',
+//   resave: false,
+//   saveUninitialized: false
+// }));
 
-app.use(function (req, res, next) {
-  console.log('session', req.session);
-  next();
-});
+// app.use(function (req, res, next) {
+//   console.log('session', req.session);
+//   next();
+// });
 
 app.post('/login', function (req, res, next) {
   //find channel based on req body

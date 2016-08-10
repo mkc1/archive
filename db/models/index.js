@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/archive');
 
 var db = mongoose.connection;
@@ -71,11 +72,11 @@ messageSchema.pre('save', function(next){
   next();
 })
 
-// messageSchema.statics.findAllChannels = function(){
-//   return this.find().distinct('channel', function(err, channels){
-//     return channels;
-//   })
-// }
+messageSchema.statics.findAllChannels = function(){
+  return this.find().distinct('channel', function(err, channels){
+    return channels;
+  })
+}
 
 channelSchema.methods.getChannelMessages = function(cb) {
   return Message.find({channel: this.channelId}).exec()

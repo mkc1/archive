@@ -3,8 +3,6 @@ var Message = models.Message;
 var Channel = models.Channel;
 var Promise = require('bluebird')
 var Slack = require('./slack')
-
-
 var Botkit = require('botkit');
 
 var controller = Botkit.slackbot({
@@ -15,7 +13,7 @@ var controller = Botkit.slackbot({
 
 // connect the bot to a stream of messages
 controller.spawn({
-  token: process.env.CONTROLLER_TOKEN,
+  token: process.env.BOT_TOKEN,
 }).startRTM()
 
 controller.on('channel_joined',function(bot,message) {

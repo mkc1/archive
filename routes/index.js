@@ -18,6 +18,7 @@ router.param('id', function (req, res, next, id) {
 router.get('/messages', function(req, res, next){
   Message.find({})
   .then(function(messages){
+    console.log(Message)
     res.json(messages)
   })
   .then(null, next)
@@ -32,7 +33,6 @@ router.get('/channels', function(req, res, next){
 })
 
 router.get('/channel/:id', function(req, res, next){
-  console.log('here is channel', req.requestedChannel)
   req.requestedChannel.getChannelMessages()
   .then(function(messages){
     var obj = req.requestedChannel.toObject();
