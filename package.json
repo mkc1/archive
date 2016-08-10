@@ -2,10 +2,10 @@
   "name": "archivebot",
   "version": "1.0.0",
   "description": "archive bot for slack",
-  "main": "main.js",
+  "main": "server.js",
   "scripts": {
     "test": "mocha",
-    "start": "node main"
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
